@@ -20,6 +20,8 @@ let player;
 let distortion;
 let panner;
 let volume;
+let volumeChange = 0;
+let volumeChange_speed = 0.01;
 let panNum = 0;
 let panNum_speed = 3;
 
@@ -45,7 +47,7 @@ async function setup() {
     oversample: "4x",
   })
   panner = new Tone.Panner(panNum);
-  volume = new Tone.Volume(-10);
+  volume = new Tone.Volume(-20);
   player.connect(distortion);
   distortion.connect(panner);
   panner.connect(volume);
@@ -55,6 +57,7 @@ async function setup() {
 
 function draw() {
   //sound
+  volume.volume.value = -20+volumeChange;
   
   lowestY = -Infinity;
   background(0);
@@ -69,6 +72,7 @@ function draw() {
     distortion.distortion = lerp(distortion.distortion, 0, 0.005);
     shaking = lerp(shaking, 0, 0.01);
     stoneReSize = lerp(stoneReSize, 0, 0.01);
+    volumeChange = lerp(volumeChange, 0, 0.01);
     if(player.reverse === false){
       player.stop();
       player.reverse = true;
@@ -100,7 +104,7 @@ function draw() {
   strokeWeight(1);
   stroke('rgb(0, 204, 0)');
   scale(30, -30);
-  translate(0, 3, -900);
+  translate(0, 1, -900);
   model(mountain);
   pop();  
 

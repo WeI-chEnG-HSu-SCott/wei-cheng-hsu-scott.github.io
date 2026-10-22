@@ -10,6 +10,7 @@ function move() {
     distortion.distortion += 0.003;
     shaking += shaking_speed;
     stoneReSize += stoneReSize_speed;
+    volumeChange += volumeChange_speed;
   }
   if (keyIsDown(DOWN_ARROW)) { // Down arrow key
     angleY -= rotSpeed;
@@ -21,6 +22,7 @@ function move() {
     distortion.distortion -= 0.003;
     shaking += shaking_speed;
     stoneReSize += stoneReSize_speed;
+    volumeChange += volumeChange_speed;
   }
   if (keyIsDown(LEFT_ARROW)) { // Left arrow key
     angleZ -= rotSpeed;
